@@ -33,26 +33,7 @@ class ViewController: UIViewController {
 extension ViewController:UITableViewDelegate, UITableViewDataSource, StarCollectionDidTappedDelegate{
     
     func starItemDidTapped(indexPath: IndexPath) {
-//        switch indexPath.item {
-//        case 1:
-//            items.items[indexPath.row].starNumber = 1
-//            
-//        case 2:
-//            items.items[indexPath.row].starNumber = 2
-//            
-//        case 3:
-//            items.items[indexPath.row].starNumber = 3
-//            
-//        case 4:
-//            items.items[indexPath.row].starNumber = 4
-//           
-//        case 5:
-//            items.items[indexPath.row].starNumber = 5
-//            
-//        default:
-//            items.items[indexPath.row].starNumber = 0
-//            
-//        }
+
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

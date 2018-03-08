@@ -9,14 +9,24 @@
 import UIKit
 
 class StarTableViewCell: UITableViewCell {
-
+    
+    
+    
     @IBOutlet weak var foodName: UILabel!
     
+    
+    var starsCase0 = ["starGray","starGray","starGray","starGray","starGray"]
+    var starsCase1 = ["starOrange","starGray","starGray","starGray","starGray"]
+    var starsCase2 = ["starOrange","starOrange","starGray","starGray","starGray"]
+    var starsCase3 = ["starOrange","starOrange","starOrange","starGray","starGray"]
+    var starsCase4 = ["starOrange","starOrange","starOrange","starOrange","starGray"]
+    var starsCase5 = ["starOrange","starOrange","starOrange","starOrange","starOrange"]
     
     var items = Items()
     
     @IBOutlet weak var starCollectionView: UICollectionView!
     
+    //此index得到的是TableView的index
     var index:IndexPath!
     var delegate:StarCollectionDidTappedDelegate?
     
@@ -24,7 +34,7 @@ class StarTableViewCell: UITableViewCell {
         super.awakeFromNib()
         starCollectionView.delegate = self
         starCollectionView.dataSource = self
-        // Initialization code
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -49,7 +59,23 @@ extension StarTableViewCell: UICollectionViewDelegate, UICollectionViewDataSourc
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "star", for: indexPath) as! StarCollectionViewCell
-        cell.starImage.image = UIImage(named: "starGray")
+        
+        
+        switch items.items[index.row].starNumber {
+        case 1:
+            cell.starImage.image = UIImage(named: starsCase1[indexPath.item])
+        case 2:
+            cell.starImage.image = UIImage(named: starsCase2[indexPath.item])
+        case 3:
+            cell.starImage.image = UIImage(named: starsCase3[indexPath.item])
+        case 4:
+            cell.starImage.image = UIImage(named: starsCase4[indexPath.item])
+        case 5:
+            cell.starImage.image = UIImage(named: starsCase5[indexPath.item])
+        default:
+            cell.starImage.image = UIImage(named: starsCase0[indexPath.item])
+        }
+
         return cell
     }
     
@@ -63,6 +89,7 @@ extension StarTableViewCell: UICollectionViewDelegate, UICollectionViewDataSourc
             items.items[index.row].starNumber = 1
             print(items.items[index.row].name)
             print(items.items[index.row].starNumber)
+            
         case 1:
             items.items[index.row].starNumber = 2
             print(items.items[index.row].name)
@@ -84,7 +111,6 @@ extension StarTableViewCell: UICollectionViewDelegate, UICollectionViewDataSourc
             print(items.items[index.row].name)
             print(items.items[index.row].starNumber)
         }
-//        delegate?.starItemDidTapped(indexPath: index)
         collectionView.reloadData()
     }
     
